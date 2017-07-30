@@ -3,3 +3,11 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.books-list {
+  display: inline-block;
+}
+
+.list-group-item-text {
+  margin-top: 1rem;
+}
