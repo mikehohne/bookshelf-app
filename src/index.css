@@ -23,3 +23,15 @@ body {
 .search-input:active {
   border: none;
 }
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+input {
+  border-radius: 4px;
+}
+
+i {
+  font-size: 2rem;
+}
