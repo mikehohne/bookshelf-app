@@ -1,18 +1,58 @@
 import React, { Component } from 'react'
+import { Button, InputGroup } from 'react-bootstrap'
 import PropTypes from 'prop-types'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
 
 class BookList extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired
   }
+
+  state = {
+    query: ''
+  }
+
+  updateQuery = (query) => {
+    this.setState({
+      query: query.trim()
+    })
+  }
+
   render() {
     const { books } = this.props
-    console.log(books)
+    const { query, filter } = this.state
+
+
+    let showingBooks
+    if(query){
+      const match = new RegExp(escapeRegExp(query), 'i')
+      showingBooks = books.filter((book) => match.test(book.title))
+    } else {
+      showingBooks = books
+    }
+
+    showingBooks.sort(sortBy('name'))
+
     return (
       <div className='list-group'>
         <h1>My Bookshelf</h1>
+        <div className="input-group">
+          <InputGroup>
+            <input
+              className='search-input'
+              value={query}
+              onChange={(event) => this.updateQuery(event.target.value)}
+              name='queryInput'
+              placeholder='Search Books' />
+            <button
+              className='btn btn-success'>
+              <i className='glyphicon glyphicon-search'></i>
+            </button>
+          </InputGroup>
+        </div>
         <ul className='books-list'>
-          {books.map((book) =>(
+          {showingBooks.map((book) =>(
             <li key={book.id} className='list-group-item'>
                 <h2 className='list-group-item-heading'>{book.title}</h2>
                 <p className='list-group-item-text'>{book.subtitle}</p>

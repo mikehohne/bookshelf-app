@@ -11,3 +11,15 @@ body {
 .list-group-item-text {
   margin-top: 1rem;
 }
+
+.input-group  {
+  display: flex;
+  justify-content: center;
+}
+.search-input {
+  text-align: center;
+}
+
+.search-input:active {
+  border: none;
+}
