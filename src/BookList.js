@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button, InputGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { InputGroup } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
@@ -9,19 +10,25 @@ class BookList extends Component {
     books: PropTypes.array.isRequired
   }
 
+  static styles = {
+    display: ''
+  }
+
   state = {
     query: ''
   }
 
   updateQuery = (query) => {
     this.setState({
-      query: query.trim()
+      query: query.trim(),
+
     })
   }
 
+
   render() {
     const { books } = this.props
-    const { query, filter } = this.state
+    const { query } = this.state
 
 
     let showingBooks
@@ -56,7 +63,15 @@ class BookList extends Component {
             <li key={book.id} className='list-group-item'>
                 <h2 className='list-group-item-heading'>{book.title}</h2>
                 <p className='list-group-item-text'>{book.subtitle}</p>
-                <img className='img-thumbnail' src={book.imageLinks.thumbnail} alt='bookThumb' />
+                <Link to={'book='+book.id}>
+                  <img
+                    className='img-thumbnail'
+                    src={book.imageLinks.thumbnail}
+                    alt='bookThumb'
+                    onMouseEnter={this.showMoreInfo}
+                    style={this.state.styles}
+                   />
+                  </Link>
               {book.authors.map((author) => (
                 <p key={author} className='list-group-item-text'>{author}</p>
               ))}
