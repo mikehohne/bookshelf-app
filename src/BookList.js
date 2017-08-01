@@ -38,6 +38,12 @@ class BookList extends Component {
     })
   }
 
+  clearQuery = (query) => {
+    this.setState({
+      query: ''
+    })
+  }
+
 
 
   render() {
@@ -76,7 +82,7 @@ class BookList extends Component {
         </div>
             {showingBooks.length === 0 && (
               <div className='get-more-results'>
-                <Button bsSize='lg'>Get More Results</Button>
+                <Button bsSize='lg' onClick={this.clearQuery}>Show All</Button>
               </div>
             )}
         <Grid>
