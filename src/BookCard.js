@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Glyphicon } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class BookCard extends Component {
@@ -7,8 +7,9 @@ class BookCard extends Component {
     const { book } = this.props
     return (
       <div>
+        <br/>
         <Link to='/'>
-          Back
+          <Glyphicon glyph='chevron-left' bsSize='lg' />
         </Link>
         <h1>Description</h1>
         <h4>{book.title}</h4>

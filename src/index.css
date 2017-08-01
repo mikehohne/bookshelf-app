@@ -1,40 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  margin-bottom: 10rem;
 }
-
-.books-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.app-title {
+  font-family: 'Indie Flower', cursive;
+  font-size: 3rem;
 }
-
-.list-group-item {
-  width: 40rem;
-  height: auto;
+input {
+  text-align: left;
 }
-
+.thumbnail {
+  padding-top: 5rem;
+  min-height: 500px;
+}
 .list-group-item-text {
   margin-top: 1rem;
 }
 
-img {
-  margin-top: 1rem;
-}
-
-.search-input {
-  text-align: center;
-}
-
-.input-group {
-  margin-bottom: 1rem;
+.form-group {
+  margin-top: 5rem;
+  margin-right: 30rem;
+  margin-left: 30rem;
   display: flex;
   justify-content: center;
-}
-.link-to-buy {
-  text-decoration: none;
-}
-input {
-  text-align: center;
 }
