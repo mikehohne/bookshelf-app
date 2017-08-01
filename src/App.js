@@ -8,7 +8,10 @@ import * as BooksAPI from './utils/BooksAPI'
 class App extends Component {
   state = {
     books: [],
-    book: []
+    book: [],
+    query: [],
+    maxResults: 0
+
   }
   componentDidMount() {
     BooksAPI.getAll().then((books) => {

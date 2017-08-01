@@ -5,33 +5,36 @@ body {
 }
 
 .books-list {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.list-group-item {
+  width: 40rem;
+  height: auto;
 }
 
 .list-group-item-text {
   margin-top: 1rem;
 }
 
-.input-group  {
-  display: flex;
-  justify-content: center;
+img {
+  margin-top: 1rem;
 }
+
 .search-input {
   text-align: center;
 }
 
-.search-input:active {
-  border: none;
-}
-
 .input-group {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
-
+.link-to-buy {
+  text-decoration: none;
+}
 input {
-  border-radius: 4px;
-}
-
-i {
-  font-size: 2rem;
+  text-align: center;
 }
