@@ -24,12 +24,9 @@ class BookList extends Component {
     books: PropTypes.array.isRequired
   }
 
-  static styles = {
-    display: ''
-  }
-
   state = {
-    query: ''
+    query: '',
+    newShelf: []
   }
 
   updateQuery = (query) => {
@@ -44,13 +41,21 @@ class BookList extends Component {
     })
   }
 
+  handleChange = (event) => {
+    this.setState({
+      newShelf: event.target.value
+    })
+  }
+
 
 
   render() {
+    console.log(this.state.newShelf);
     const { books, onGetBookById } = this.props
-    const { query } = this.state
+    const { query, newShelf } = this.state
 
     let showingBooks
+
     if(query){
       const match = new RegExp(escapeRegExp(query), 'i')
       showingBooks = books.filter((book) => match.test(book.title))
@@ -101,10 +106,10 @@ class BookList extends Component {
                         <Button bsStyle="default">More</Button>&nbsp;
                       </Link>
                       <ButtonGroup id='DropdownButton'>
-                        <DropdownButton id={book.id} title={book.shelf.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase()})}>
-                          <MenuItem eventKey="1">Currently Reading</MenuItem>
-                          <MenuItem eventKey="2">Want To Read</MenuItem>
-                          <MenuItem eventKey="3">Read</MenuItem>
+                        <DropdownButton id={book.id} value={newShelf} title={book.shelf}>
+                          <MenuItem eventKey='1' value='currentlyReading' onClick={this.handleChange}>Currently Reading</MenuItem>
+                          <MenuItem eventKey='2' value='wantToRead'>Want To Read</MenuItem>
+                          <MenuItem eventKey='3' value='read'>Read</MenuItem>
                         </DropdownButton>
                       </ButtonGroup>
                     </div>

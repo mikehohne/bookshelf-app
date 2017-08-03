@@ -29,3 +29,13 @@ input {
   display: flex;
   justify-content: center;
 }
+
+.container {
+}
+
+.carousel {
+  width: 390px;
+  height: 520;
+  display: flex;
+  justify-content: center;
+}
