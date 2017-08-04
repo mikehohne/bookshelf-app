@@ -19,6 +19,8 @@ import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 
+import BookResults from './BookResults'
+
 class BookList extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired
@@ -26,7 +28,8 @@ class BookList extends Component {
 
   state = {
     query: '',
-    newShelf: []
+    newShelf: [],
+    bookResults: this.props.results
   }
 
   updateQuery = (query) => {
@@ -48,11 +51,9 @@ class BookList extends Component {
   }
 
 
-
   render() {
-    console.log(this.state.newShelf);
-    const { books, onGetBookById } = this.props
-    const { query, newShelf } = this.state
+    const { books, onGetBookById, onSearch, results } = this.props
+    const { query, newShelf, maxResults } = this.state
 
     let showingBooks
 
@@ -87,7 +88,11 @@ class BookList extends Component {
         </div>
             {showingBooks.length === 0 && (
               <div className='get-more-results'>
-                <Button bsSize='lg' onClick={this.clearQuery}>Show All</Button>
+                <Button bsSize='lg' onClick={() => onSearch(query,maxResults)}>Search For More</Button>
+                <div>
+                  <BookResults key={results.id} result={results} />
+                </div>
+                  <Button onClick={this.clearQuery}>Reset Search</Button>
               </div>
             )}
         <Grid>

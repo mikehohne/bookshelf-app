@@ -8,6 +8,7 @@ class BookCard extends Component {
 
     let buy = 'Buy'
     let rate = 'Rate'
+
     return (
       <div>
         <br/>

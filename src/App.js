@@ -9,8 +9,9 @@ class App extends Component {
   state = {
     books: [],
     book: [],
-    query: [],
-    maxResults: 0
+    query: '',
+    maxResults: 10,
+    results: []
 
   }
   componentDidMount() {
@@ -25,14 +26,30 @@ class App extends Component {
     })
   }
 
+  searchForTerms(query,maxResults){
+    BooksAPI.search(query,maxResults)
+      .then((results) => {
+        if(results.error) {
+          console.error('Invalid Search Term');
+        }
+        this.setState({
+          results: results,
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Route exact path='/' render={() => (
           <BookList
+            results={this.state.results}
             books={this.state.books}
             onGetBookById={(bookId) => {
               this.getBookById(bookId)
+            }}
+            onSearch={(query,maxResults) => {
+              this.searchForTerms(query,maxResults)
             }}
            />
         )}/>
